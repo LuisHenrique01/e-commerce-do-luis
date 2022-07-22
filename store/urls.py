@@ -1,3 +1,8 @@
 from django.urls import path
+from .views import ProductListView
 
-urlpatterns = []
+app_name = 'store'
+
+urlpatterns = [
+    path('', ProductListView.as_view(), name='home_page'),
+]
