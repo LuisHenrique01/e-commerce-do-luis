@@ -1,6 +1,7 @@
 from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -11,6 +12,9 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+
+    def get_absolute_url(self):
+        return reverse("store:category_detail", args=[self.slug])
 
     def __str__(self):
         return self.name

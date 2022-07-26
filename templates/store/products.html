@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Bem vindo{% endblock title %}
+
+{% block content %}
+    <p>
+        {{category}}
+    </p>
+    {% for product in products %}
+      <p>
+        {{product}}
+      </p>
+    {% endfor %}
+{% endblock content %}
