@@ -16,3 +16,8 @@ class CategoryDetailView(DetailView):
         self.extra_context['products'] = Product.objects.filter(
             category__slug=self.kwargs.get(self.slug_url_kwarg))
         return super().get_context_data(**kwargs)
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = "store/product.html"

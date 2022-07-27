@@ -44,5 +44,8 @@ class Product(models.Model):
         verbose_name_plural = "Products"
         ordering = ('-created', )
 
+    def get_absolute_url(self):
+        return reverse("store:product_detail", args=[self.slug])
+
     def __str__(self):
         return self.title
