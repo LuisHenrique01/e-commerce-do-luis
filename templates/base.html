@@ -26,7 +26,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-decoration-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categorias</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item {% if not category %} active {% endif %}" href="#">Todos</a>
+                <a class="dropdown-item {% if not category %} active {% endif %}" href="{% url 'store:all_products' %}">Todos</a>
                 {% for cate in categories %}
                   <a class="dropdown-item {% if cate.slug == category.slug %} active {% endif %}" href="{{ cate.get_absolute_url }}">{{ cate.name|title }}</a>  
                 {% endfor %}

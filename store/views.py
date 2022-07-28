@@ -6,6 +6,12 @@ class HomeView(TemplateView):
     template_name = "home.html"
 
 
+class ProductListView(ListView):
+    model = Product
+    template_name = "store/products.html"
+    context_object_name = 'products'
+
+
 class CategoryDetailView(DetailView):
     model = Category
     extra_context = {}
