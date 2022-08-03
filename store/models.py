@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 
+class ProductsManager(models.Manager):
+
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
+
+
 class Category(models.Model):
 
     name = models.CharField(max_length=255, db_index=True)
@@ -31,13 +37,17 @@ class Product(models.Model):
     title = models.CharField(max_length=255)
     manufacturer = models.CharField(max_length=255, default='Luis Develop')
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/',
+                              default='images/default.png')
     slug = models.SlugField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    #Managers
+    objects = models.Manager()
+    products_actives = ProductsManager()
 
     class Meta:
         verbose_name = "Product"

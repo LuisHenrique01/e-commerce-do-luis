@@ -8,6 +8,7 @@ class HomeView(TemplateView):
 
 class ProductListView(ListView):
     model = Product
+    queryset = Product.products_actives.all()
     template_name = "store/products.html"
     context_object_name = 'products'
 
@@ -19,7 +20,7 @@ class CategoryDetailView(DetailView):
     template_name = "store/products.html"
 
     def get_context_data(self, **kwargs):
-        self.extra_context['products'] = Product.objects.filter(
+        self.extra_context['products'] = Product.products_actives.filter(
             category__slug=self.kwargs.get(self.slug_url_kwarg))
         return super().get_context_data(**kwargs)
 
